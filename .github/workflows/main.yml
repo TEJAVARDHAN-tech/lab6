@@ -1,9 +1,7 @@
-name: Java CI with Maven
+name: Java Build (No Maven)
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -14,11 +12,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up JDK 8
+    - name: Setup Java
       uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Build with Maven
-      run: mvn clean install
+    - name: Compile Java
+      run: javac Calculator.java
+
+    - name: Run Java
+      run: java Calculator
